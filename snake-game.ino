@@ -1,12 +1,15 @@
 #define DEBUG 0
 #include <LedControl.h>
-int DIN = 10;
-int CS =  9;
-int CLK = 8;
+int DIN = A12;
+int CS =  A11;
+int CLK = A10;
+
+#define joyX A0
+#define joyY A1
 
 LedControl lc=LedControl(DIN,CLK,CS,0);
-unsigned int delaytime = 1000;
-
+unsigned int delaytime = 100;
+  
 void setup() {
   #ifdef DEBUG
   Serial.begin(9600);
@@ -37,12 +40,20 @@ void display() {
   }
 }
 
+void logJoystick() {  
+  int xValue = analogRead(A2);
+  int yValue = analogRead(A3);
+  
+
+  //print the values with to plot or view
+  Serial.print(xValue);
+  Serial.print("\t");
+  Serial.println(yValue);
+}
+
 
 void loop() {
-  #ifdef DEBUG
-  Serial.println("Debug testing");
-  #endif
-
-  display();
+  //display();
+  logJoystick();
   delay(delaytime);
 }
