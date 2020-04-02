@@ -1,9 +1,19 @@
+#define DEBUG 0
+
+unsigned int delaytime = 1000;
+
 void setup() {
-  // put your setup code here, to run once:
+  #ifdef DEBUG
+  Serial.begin(9600);
+  #endif
 
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  #ifdef DEBUG
+  Serial.println("Debug testing");
+  #endif
+
+  delay(delaytime);
 
 }
