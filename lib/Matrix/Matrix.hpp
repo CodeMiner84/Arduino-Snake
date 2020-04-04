@@ -12,11 +12,11 @@ class Matrix
 		Matrix();
 		~Matrix();
 
-		void changeCoordinates(int x, int y);
-		void print();
+		void ChangeCoordinates(int x, int y);
+		void Print();
 
-		int getX();
-		int getY();
+		int GetX();
+		int GetY();
 };
 
 #endif

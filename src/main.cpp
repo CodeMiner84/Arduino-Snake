@@ -26,9 +26,9 @@ void setup() {
   randomRow = random(0, 8);
   randomCol = random(0, 8);
 
-  coordinates.changeCoordinates(randomRow, randomCol);
+  coordinates.ChangeCoordinates(randomRow, randomCol);
 
-  coordinates.print();
+  coordinates.Print();
   
  lc.shutdown(0,false);       
  lc.setIntensity(0,1);      //Adjust the brightness maximum is 15
@@ -41,7 +41,7 @@ void setup() {
 void display() {  
   for(int row=0;row<8;row++) {
     for(int col=0;col<8;col++) {
-      if (row == coordinates.getX() and col == coordinates.getY()) {
+      if (row == coordinates.GetX() and col == coordinates.GetY()) {
         lc.setLed(0,row,col,true);
       } else {
         lc.setLed(0,row,col,false);
@@ -70,9 +70,9 @@ void logMatrix() {
     randomCol += 1;
   }
 
-  coordinates.changeCoordinates(randomRow, randomCol);
+  coordinates.ChangeCoordinates(randomRow, randomCol);
 
-  coordinates.print();
+  coordinates.Print();
 }
 
 

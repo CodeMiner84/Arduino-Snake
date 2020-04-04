@@ -9,23 +9,23 @@ Matrix::~Matrix()
 {
 }
 
-void Matrix::changeCoordinates(int x, int y)
+void Matrix::ChangeCoordinates(int x, int y)
 {
   this->x = x;
   this->y =y;
 }
 
-int Matrix::getX()
+int Matrix::GetX()
 {
   return x;
 }
 
-int Matrix::getY()
+int Matrix::GetY()
 {
   return y;
 }
 
-void Matrix::print()
+void Matrix::Print()
 {
   Serial.print("Matrix coordinates: [");
   Serial.print(x);
