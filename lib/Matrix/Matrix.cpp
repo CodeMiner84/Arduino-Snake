@@ -41,17 +41,6 @@ void Matrix::ChangeCoordinates(int x, int y)
   this->y = y;
 }
 
-int Matrix::GetX()
-{
-  return x;
-}
-
-int Matrix::GetY()
-{
-  return y;
-}
-
-
 void Matrix::MoveSnake()
 {
   joystick->ReadAnalog();
@@ -140,14 +129,4 @@ void Matrix::DisplaySnake()
 
 
   Serial.println("...");
-
-  // for(int row=0;row<SIZE;row++) {
-  //   for(int col=0;col<SIZE;col++) {
-  //     if (row == GetX() and col == GetY()) {
-  //       lc->setLed(0,row,col,true);
-  //     } else {
-  //       lc->setLed(0,row,col,false);
-  //     }
-  //   }
-  // }
 }

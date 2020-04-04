@@ -33,9 +33,6 @@ class Matrix
 		void MoveSnake();
 		void DisplaySnake();
 		void PlaceSnake();
-
-		int GetX();
-		int GetY();
 };
 
 #endif
