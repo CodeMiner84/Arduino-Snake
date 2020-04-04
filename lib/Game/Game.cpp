@@ -8,14 +8,16 @@ Game::Game()
 
 }
 
+
 Game::~Game()
 {
 
 }
 
-void Game::Initialize(Matrix* matrix)
+
+void Game::Initialize()
 {
-  this->matrix = matrix;
+  this->matrix = new Matrix();
   Serial.println("GAME IS INITIALIZING");
 }
 
@@ -30,4 +32,6 @@ void Game::Display(LedControl lc) {
       }
     }
   }
+
+  matrix->LogMatrix();
 }

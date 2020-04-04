@@ -23,8 +23,7 @@ void setup() {
   Serial.begin(9600);
   #endif
 
-  game.Initialize(&matrix);
-  matrix.AssignJoystick(&joystick);
+  game.Initialize();
   
   lc.shutdown(0,false);       
   lc.setIntensity(0,0);//Adjust the brightness maximum is 15
@@ -34,6 +33,5 @@ void setup() {
 
 void loop() {
   game.Display(lc);
-  matrix.LogMatrix();
   delay(delaytime);
 }

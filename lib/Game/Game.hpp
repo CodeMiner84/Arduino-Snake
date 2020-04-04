@@ -7,11 +7,13 @@ class Game
 {
 	private:
 		Matrix* matrix;
+		String currentDirection;
+		enum directions { up, down, left, right };
 	public:
 
 		Game();
 		~Game();
-		void Initialize(Matrix* matrix);
+		void Initialize();
 		void Display(LedControl lc);
 
 };

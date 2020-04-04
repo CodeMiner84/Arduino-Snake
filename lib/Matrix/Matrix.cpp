@@ -6,9 +6,11 @@
 Matrix::Matrix()
 {
   randomSeed(analogRead(0));
-  
+
   x = random(0, 8);
   y = random(0, 8);
+
+  this->joystick = new Joystick();
 }
 
 Matrix::~Matrix()
@@ -44,7 +46,6 @@ void Matrix::Print()
 
 void Matrix::AssignJoystick(Joystick* joystick)
 {
-  this->joystick = joystick;
 }
 
 void Matrix::LogMatrix()
