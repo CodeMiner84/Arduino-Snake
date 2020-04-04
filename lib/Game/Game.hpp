@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 #include <Matrix.cpp>
+#include <LedControl.h>
 
 class Game  
 {
@@ -11,6 +12,7 @@ class Game
 		Game();
 		~Game();
 		void Initialize(Matrix* matrix);
+		void Display(LedControl lc);
 
 };
 

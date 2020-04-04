@@ -10,6 +10,7 @@ class Matrix
 		Joystick* joystick;
 
 	public:
+		static const int SIZE = 8;
 
 		Matrix();
 		~Matrix();

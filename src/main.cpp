@@ -31,21 +31,9 @@ void setup() {
   lc.clearDisplay(0);    
 }
 
-void display() {  
-  for(int row=0;row<8;row++) {
-    for(int col=0;col<8;col++) {
-      if (row == matrix.GetX() and col == matrix.GetY()) {
-        lc.setLed(0,row,col,true);
-      } else {
-        lc.setLed(0,row,col,false);
-      }
-    }
-  }
-}
-
 
 void loop() {
-  display();
+  game.Display(lc);
   matrix.LogMatrix();
   delay(delaytime);
 }
