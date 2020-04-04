@@ -156,12 +156,7 @@ void Matrix::DisplaySnake()
 
   lc->setLed(0,Food.x ,Food.y, true);
 
-
-
-Serial.print('Food ');
-Serial.print(Food.x);
-Serial.print(" - ");
-Serial.println(Food.y);
-
-  Serial.println("...");
+  if (Food.x == x and Food.y == y) {
+    GenerateFood();
+  }
 }
