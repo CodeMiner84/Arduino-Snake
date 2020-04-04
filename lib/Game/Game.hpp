@@ -7,6 +7,7 @@ class Game
 {
 	private:
 		Matrix* matrix;
+		Joystick* joystick;
 	public:
 
 		Game();
