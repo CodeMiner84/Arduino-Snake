@@ -21,24 +21,13 @@ void setup() {
   Serial.begin(9600);
   #endif
 
-  randomSeed(analogRead(0));
-
-  randomRow = random(0, 8);
-  randomCol = random(0, 8);
-
-  matrix.ChangeCoordinates(randomRow, randomCol);
   matrix.AssignJoystick(&joystick);
-
-  matrix.Print();
   
- lc.shutdown(0,false);       
- lc.setIntensity(0,1);      //Adjust the brightness maximum is 15
- lc.clearDisplay(0);    
+  lc.shutdown(0,false);       
+  lc.setIntensity(0,0);//Adjust the brightness maximum is 15
+  lc.clearDisplay(0);    
 }
 
-/**
- * Display dots function
- */
 void display() {  
   for(int row=0;row<8;row++) {
     for(int col=0;col<8;col++) {

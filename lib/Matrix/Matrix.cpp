@@ -4,6 +4,10 @@
 
 Matrix::Matrix()
 {
+  randomSeed(analogRead(0));
+  
+  x = random(0, 8);
+  y = random(0, 8);
 }
 
 Matrix::~Matrix()
