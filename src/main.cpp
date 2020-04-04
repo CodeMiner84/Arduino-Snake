@@ -3,6 +3,7 @@
 #include <LedControl.h>
 #include <Matrix.cpp>
 #include <Joystick.cpp>
+#include <Game.cpp>
 
 int DIN = A12;
 int CS =  A11;
@@ -13,6 +14,7 @@ unsigned int delaytime = 100;
 int randomRow = 0;
 int randomCol = 0;
 
+Game game;
 Joystick joystick;
 Matrix matrix;
   
@@ -21,6 +23,7 @@ void setup() {
   Serial.begin(9600);
   #endif
 
+  game.Initialize(&matrix);
   matrix.AssignJoystick(&joystick);
   
   lc.shutdown(0,false);       
