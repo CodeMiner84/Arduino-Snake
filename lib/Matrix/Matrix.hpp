@@ -18,7 +18,7 @@ class Matrix
 		void ChangeCoordinates(int x, int y);
 		void Print();
 		void AssignJoystick(Joystick* joystick);
-		void LogMatrix();
+		void MoveSnake();
 
 		int GetX();
 		int GetY();

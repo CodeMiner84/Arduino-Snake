@@ -48,7 +48,7 @@ void Matrix::AssignJoystick(Joystick* joystick)
 {
 }
 
-void Matrix::LogMatrix()
+void Matrix::MoveSnake()
 {
   joystick->ReadAnalog();
 

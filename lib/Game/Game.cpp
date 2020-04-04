@@ -33,5 +33,5 @@ void Game::Display(LedControl lc) {
     }
   }
 
-  matrix->LogMatrix();
+  matrix->MoveSnake();
 }
