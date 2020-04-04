@@ -1,4 +1,7 @@
-class Joystick  
+#ifndef MATRIX_H
+#define MATRIX_H
+
+class Matrix  
 {
 	private:
 		int x;
@@ -6,8 +9,8 @@ class Joystick
 
 	public:
 
-		Joystick();
-		~Joystick();
+		Matrix();
+		~Matrix();
 
 		void print();
 		void setX(int xCoordination);
@@ -16,3 +19,5 @@ class Joystick
 		int getX();
 		int getY();
 };
+
+#endif

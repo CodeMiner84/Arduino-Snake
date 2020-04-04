@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #define DEBUG 0
 #include <LedControl.h>
-#include <Joystick.cpp>
+#include <Matrix.cpp>
 
 int DIN = A12;
 int CS =  A11;
@@ -14,7 +14,7 @@ unsigned int delaytime = 100;
 int randomRow = 0;
 int randomCol = 0;
 
-Joystick coordinates;
+Matrix coordinates;
   
 void setup() {
   #ifdef DEBUG
@@ -51,7 +51,7 @@ void display() {
   }
 }
 
-void logJoystick() {  
+void logMatrix() {  
   int xValue = analogRead(A2);
   int yValue = analogRead(A3);
 
@@ -80,6 +80,6 @@ void logJoystick() {
 
 void loop() {
   display();
-  logJoystick();
+  logMatrix();
   delay(delaytime);
 }
