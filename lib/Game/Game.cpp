@@ -3,16 +3,8 @@
 #include "Matrix.hpp"
 #include <LedControl.h>
 
-Game::Game()
-{
-
-}
-
-
-Game::~Game()
-{
-
-}
+Game::Game() {}
+Game::~Game() {}
 
 
 void Game::Initialize(LedControl* lc)
