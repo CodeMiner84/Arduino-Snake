@@ -12,9 +12,8 @@ class Matrix
 		Matrix();
 		~Matrix();
 
+		void changeCoordinates(int x, int y);
 		void print();
-		void setX(int xCoordination);
-		void setY(int yCoordination);
 
 		int getX();
 		int getY();

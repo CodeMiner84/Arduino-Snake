@@ -9,14 +9,10 @@ Matrix::~Matrix()
 {
 }
 
-void Matrix::setX(int x)
+void Matrix::changeCoordinates(int x, int y)
 {
   this->x = x;
-}
-
-void Matrix::setY(int y)
-{
-  this->y = y;
+  this->y =y;
 }
 
 int Matrix::getX()

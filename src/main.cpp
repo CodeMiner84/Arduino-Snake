@@ -26,8 +26,7 @@ void setup() {
   randomRow = random(0, 8);
   randomCol = random(0, 8);
 
-  coordinates.setX(randomRow);
-  coordinates.setY(randomCol);
+  coordinates.changeCoordinates(randomRow, randomCol);
 
   coordinates.print();
   
@@ -71,8 +70,7 @@ void logMatrix() {
     randomCol += 1;
   }
 
-  coordinates.setX(randomRow);
-  coordinates.setY(randomCol);
+  coordinates.changeCoordinates(randomRow, randomCol);
 
   coordinates.print();
 }
