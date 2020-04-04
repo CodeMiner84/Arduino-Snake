@@ -54,6 +54,7 @@ void Matrix::GenerateFood()
 
     if (!sameCoords) {
       created = false;
+
       Food = Point { foodX, foodY };
     }
 
@@ -133,14 +134,14 @@ void Matrix::DisplaySnake()
     TmpSnake[i] = Snake[i];
 	}
 
-	for(int i=0;i<SnakeSize;i++)
-	{
-    Serial.print("[");
-    Serial.print(TmpSnake[i].x);
-    Serial.print("][");
-    Serial.print(TmpSnake[i].y);
-    Serial.print("]   ");
-	}
+	// for(int i=0;i<SnakeSize;i++)
+	// {
+  //   Serial.print("[");
+  //   Serial.print(TmpSnake[i].x);
+  //   Serial.print("][");
+  //   Serial.print(TmpSnake[i].y);
+  //   Serial.print("]   ");
+	// }
   for(int i=0; i<SnakeSize; i++)
 	{
     if ( i==0 ) {
@@ -154,9 +155,12 @@ void Matrix::DisplaySnake()
 	}
   lc->setLed(0,TmpSnake[SnakeSize-1].x ,TmpSnake[SnakeSize-1].y, false);
 
+
   lc->setLed(0,Food.x ,Food.y, true);
 
   if (Food.x == x and Food.y == y) {
+    SnakeSize += 1;
+    Snake[SnakeSize] = Point {TmpSnake[SnakeSize-2].x, TmpSnake[SnakeSize-2].y };
     GenerateFood();
   }
 }
