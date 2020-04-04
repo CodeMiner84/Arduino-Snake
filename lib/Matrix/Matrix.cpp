@@ -12,8 +12,7 @@ Matrix::Matrix(Joystick* joystick)
   Snake[0] = Point { 2, 3 };
   Snake[1] = Point { 3, 3 };
   Snake[2] = Point { 4, 3 };
-  Snake[3] = Point { 5, 3 };
-  SnakeSize = 4;
+  SnakeSize = 3;
 
   this->joystick = joystick;
 
@@ -123,10 +122,11 @@ void Matrix::DisplaySnake(LedControl lc)
 {
   lc.clearDisplay(0);
 
-  TmpSnake[0] = Snake[0];
-  TmpSnake[1] = Snake[1];
-  TmpSnake[2] = Snake[2];
-  TmpSnake[3] = Snake[3];
+	for(int i=0; i<SnakeSize; i++)
+	{
+    TmpSnake[i] = Snake[i];
+	}
+
 	for(int i=0;i<SnakeSize;i++)
 	{
     Serial.print("[");
@@ -135,9 +135,9 @@ void Matrix::DisplaySnake(LedControl lc)
     Serial.print(TmpSnake[i].y);
     Serial.print("]   ");
 	}
-  for(int i=0;i<SnakeSize;i++)
+  for(int i=0; i<SnakeSize; i++)
 	{
-    if (i==0) {
+    if ( i==0 ) {
       lc.setLed(0,x ,y, true);
 
       Snake[i] = Point { x, y };
