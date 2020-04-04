@@ -52,17 +52,30 @@ void Matrix::MoveSnake()
 {
   joystick->ReadAnalog();
 
-  if (joystick->IsDown() and x > 0) {
+  if (joystick->IsDown()) {
     x -= 1;
   }
-  if (joystick->IsUp() and x < 7) {
+  if (joystick->IsUp()) {
     x += 1;
   }
-  if (joystick->IsLeft() and y > 0) {
+  if (joystick->IsLeft()) {
     y -= 1;
   }
-  if (joystick->IsRight() and y < 7) {
+  if (joystick->IsRight()) {
     y += 1;
+  }
+
+  if (x < MIN) {
+    x = MAX;
+  }
+  if (x > MAX) {
+    x = MIN;
+  }
+  if (y < MIN) {
+    y = MAX;
+  }
+  if (y > MAX) {
+    y = MIN;
   }
 
   ChangeCoordinates(x, y);
