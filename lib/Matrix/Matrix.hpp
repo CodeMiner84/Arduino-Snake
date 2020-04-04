@@ -10,6 +10,8 @@ class Matrix
 		Joystick* joystick;
 		static const int MIN = 0;
 		static const int MAX = 7;
+		int currentDirection;
+		enum directions { up, down, left, right };
 
 	public:
 		static const int SIZE = 8;

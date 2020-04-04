@@ -52,16 +52,29 @@ void Matrix::MoveSnake()
 {
   joystick->ReadAnalog();
 
-  if (joystick->IsDown()) {
+  if (currentDirection != directions::up and joystick->IsDown()) {
+    currentDirection=directions::down;
+  }
+  if (currentDirection != directions::down and joystick->IsUp()) {
+    currentDirection=directions::up;
+  }
+  if (currentDirection != directions::right and joystick->IsLeft()) {
+    currentDirection=directions::left;
+  }
+  if (currentDirection != directions::left and joystick->IsRight()) {
+    currentDirection=directions::right;
+  }
+
+  if (currentDirection==directions::down) {
     x -= 1;
   }
-  if (joystick->IsUp()) {
+  if (currentDirection==directions::up) {
     x += 1;
   }
-  if (joystick->IsLeft()) {
+  if (currentDirection==directions::left) {
     y -= 1;
   }
-  if (joystick->IsRight()) {
+  if (currentDirection==directions::right) {
     y += 1;
   }
 
@@ -79,4 +92,7 @@ void Matrix::MoveSnake()
   }
 
   ChangeCoordinates(x, y);
+
+  Serial.print("Direction of game: ");
+  Serial.println(currentDirection);
 }

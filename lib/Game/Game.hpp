@@ -7,8 +7,6 @@ class Game
 {
 	private:
 		Matrix* matrix;
-		String currentDirection;
-		enum directions { up, down, left, right };
 	public:
 
 		Game();
