@@ -1,11 +1,13 @@
 #pragma once
 #include <Arduino.h>
+#include <LedControl.h>
 #include "Matrix.hpp"
 #include <Joystick.cpp>
 #include "Point.hpp"
 
-Matrix::Matrix(Joystick* joystick)
+Matrix::Matrix(Joystick* joystick, LedControl* lc)
 {
+  this->lc = lc;
   randomSeed(analogRead(0));
 
   x = 2, y = 3;
@@ -110,17 +112,17 @@ void Matrix::MoveSnake()
   // Serial.println(currentDirection);
 }
 
-void Matrix::PlaceSnake(LedControl lc)
+void Matrix::PlaceSnake()
 {
   for(int i=0;i<SnakeSize;i++)
 	{
-    lc.setLed(0,Snake[i].x ,Snake[i].y, true);
+    lc->setLed(0,Snake[i].x ,Snake[i].y, true);
 	}
 }
 
-void Matrix::DisplaySnake(LedControl lc)
+void Matrix::DisplaySnake()
 {
-  lc.clearDisplay(0);
+  lc->clearDisplay(0);
 
 	for(int i=0; i<SnakeSize; i++)
 	{
@@ -138,12 +140,12 @@ void Matrix::DisplaySnake(LedControl lc)
   for(int i=0; i<SnakeSize; i++)
 	{
     if ( i==0 ) {
-      lc.setLed(0,x ,y, true);
+      lc->setLed(0,x ,y, true);
 
       Snake[i] = Point { x, y };
     } else {
       Snake[i] = Point { TmpSnake[i-1].x, TmpSnake[i-1].y };
-      lc.setLed(0,TmpSnake[i-1].x ,TmpSnake[i-1].y, true);
+      lc->setLed(0,TmpSnake[i-1].x ,TmpSnake[i-1].y, true);
     }
 	}
 
@@ -153,9 +155,9 @@ void Matrix::DisplaySnake(LedControl lc)
   // for(int row=0;row<SIZE;row++) {
   //   for(int col=0;col<SIZE;col++) {
   //     if (row == GetX() and col == GetY()) {
-  //       lc.setLed(0,row,col,true);
+  //       lc->setLed(0,row,col,true);
   //     } else {
-  //       lc.setLed(0,row,col,false);
+  //       lc->setLed(0,row,col,false);
   //     }
   //   }
   // }

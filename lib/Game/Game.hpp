@@ -12,8 +12,8 @@ class Game
 
 		Game();
 		~Game();
-		void Initialize();
-		void Display(LedControl lc);
+		void Initialize(LedControl* lc);
+		void Display();
 		bool gameStarted = false;
 		void StartGameOnFirstMove();
 		void StartGame();

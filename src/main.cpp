@@ -1,3 +1,4 @@
+#pragma once
 #include <Arduino.h>
 #define DEBUG 0
 #include <LedControl.h>
@@ -22,15 +23,15 @@ void setup() {
   Serial.begin(9600);
   #endif
 
-  game.Initialize();
-
   lc.shutdown(0,false);       
   lc.setIntensity(0,0);//Adjust the brightness maximum is 15
   lc.clearDisplay(0);
+
+  game.Initialize(&lc);
 }
 
 
 void loop() {
-  game.Display(lc);
+  game.Display();
   delay(delaytime);
 }

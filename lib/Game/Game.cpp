@@ -15,21 +15,21 @@ Game::~Game()
 }
 
 
-void Game::Initialize()
+void Game::Initialize(LedControl* lc)
 {
   joystick = new Joystick();
-  matrix = new Matrix(joystick);
+  matrix = new Matrix(joystick, lc);
   Serial.println("GAME IS INITIALIZING");
 }
 
 
-void Game::Display(LedControl lc) {
+void Game::Display() {
   if (IsStarted()) {
     matrix->MoveSnake();
-    matrix->DisplaySnake(lc);
+    matrix->DisplaySnake();
   } else {
     StartGameOnFirstMove();
-    matrix->PlaceSnake(lc);
+    matrix->PlaceSnake();
   }
 }
 
