@@ -1,5 +1,6 @@
 #include <Arduino.h>
-#include "Matrix.hpp"  
+#include "Matrix.hpp"
+#include <Joystick.cpp>
 
 Matrix::Matrix()
 {
@@ -12,7 +13,9 @@ Matrix::~Matrix()
 void Matrix::ChangeCoordinates(int x, int y)
 {
   this->x = x;
-  this->y =y;
+  this->y = y;
+
+  Print();
 }
 
 int Matrix::GetX()
@@ -27,9 +30,34 @@ int Matrix::GetY()
 
 void Matrix::Print()
 {
-  // Serial.print("Matrix coordinates: [");
-  // Serial.print(x);
-  // Serial.print("][");
-  // Serial.print(y);
-  // Serial.println("]");
+  Serial.print("Matrix coordinates: [");
+  Serial.print(x);
+  Serial.print("][");
+  Serial.print(y);
+  Serial.println("]");
+}
+
+void Matrix::AssignJoystick(Joystick* joystick)
+{
+  this->joystick = joystick;
+}
+
+void Matrix::LogMatrix()
+{
+  joystick->ReadAnalog();
+
+  if (joystick->IsDown() and x > 0) {
+    x -= 1;
+  }
+  if (joystick->IsUp() and x < 7) {
+    x += 1;
+  }
+  if (joystick->IsLeft() and y > 0) {
+    y -= 1;
+  }
+  if (joystick->IsRight() and y < 7) {
+    y += 1;
+  }
+
+  ChangeCoordinates(x, y);
 }
