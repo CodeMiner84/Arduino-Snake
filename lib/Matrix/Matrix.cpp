@@ -39,8 +39,6 @@ void Matrix::ChangeCoordinates(int x, int y)
 {
   this->x = x;
   this->y = y;
-
-  Print();
 }
 
 int Matrix::GetX()
@@ -51,15 +49,6 @@ int Matrix::GetX()
 int Matrix::GetY()
 {
   return y;
-}
-
-void Matrix::Print()
-{
-  // Serial.print("Matrix coordinates: [");
-  // Serial.print(x);
-  // Serial.print("][");
-  // Serial.print(y);
-  // Serial.println("]");
 }
 
 
