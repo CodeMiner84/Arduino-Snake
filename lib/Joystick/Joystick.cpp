@@ -47,3 +47,20 @@ bool Joystick::IsRight()
 {
   return x == JOYSTICK_MAX_VALUE;
 }
+
+bool Joystick::WaitForFirstAction()
+{
+  int startingX = analogRead(xAxis);
+  int startingY = analogRead(yAxis);
+
+  if (
+    startingX == JOYSTICK_MIN_VALUE or
+    startingX == JOYSTICK_MAX_VALUE or
+    startingY == JOYSTICK_MIN_VALUE or
+    startingY == JOYSTICK_MAX_VALUE
+  ) {
+    return true;
+  }
+
+  return false;
+}

@@ -13,6 +13,7 @@ class Joystick
 
 		Joystick* ReadAnalog();
 		void Debug();
+		bool WaitForFirstAction();
 
 		bool IsUp();
 		bool IsDown();

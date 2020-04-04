@@ -15,7 +15,7 @@ Matrix::Matrix(Joystick* joystick)
   Snake[3] = Point { 5, 3 };
   SnakeSize = 4;
 
-  this->joystick = joystick
+  this->joystick = joystick;
 
   Serial.print("SNAKE COORDS: ");
 	for(int i=0;i<SnakeSize;i++)
@@ -60,6 +60,7 @@ void Matrix::Print()
   // Serial.print(y);
   // Serial.println("]");
 }
+
 
 void Matrix::MoveSnake()
 {
@@ -108,6 +109,14 @@ void Matrix::MoveSnake()
 
   // Serial.print("Direction of game: ");
   // Serial.println(currentDirection);
+}
+
+void Matrix::PlaceSnake(LedControl lc)
+{
+  for(int i=0;i<SnakeSize;i++)
+	{
+    lc.setLed(0,Snake[i].x ,Snake[i].y, true);
+	}
 }
 
 void Matrix::DisplaySnake(LedControl lc)

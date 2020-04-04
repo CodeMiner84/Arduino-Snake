@@ -24,7 +24,28 @@ void Game::Initialize()
 
 
 void Game::Display(LedControl lc) {
-  matrix->DisplaySnake(lc);
+  if (IsStarted()) {
+    matrix->DisplaySnake(lc);
+    matrix->MoveSnake();
+  } else {
+    StartGameOnFirstMove();
+    matrix->PlaceSnake(lc);
+  }
+}
 
-  matrix->MoveSnake();
+void Game::StartGameOnFirstMove() {
+  if (joystick->WaitForFirstAction())
+  {
+    StartGame();
+  }
+}
+
+void Game::StartGame()
+{
+  gameStarted = true;
+}
+
+bool Game::IsStarted()
+{
+  return gameStarted;
 }

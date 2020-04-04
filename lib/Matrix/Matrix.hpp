@@ -28,8 +28,10 @@ class Matrix
 
 		void ChangeCoordinates(int x, int y);
 		void Print();
+		void AssignJoystick(Joystick* joystick);
 		void MoveSnake();
 		void DisplaySnake(LedControl lc);
+		void PlaceSnake(LedControl lc);
 
 		int GetX();
 		int GetY();
