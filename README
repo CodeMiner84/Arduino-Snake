@@ -1,0 +1,5 @@
+
+
+# Required C++ libraries
+* pio lib install "StandardCplusplus"
+* pio lib install "LedControl"
