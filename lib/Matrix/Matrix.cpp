@@ -100,8 +100,6 @@ void Matrix::PlaceSnake()
 
 void Matrix::DisplaySnake()
 {
-  lc->clearDisplay(0);
-
 	for(int i=0; i<SnakeSize; i++)
 	{
     TmpSnake[i] = Snake[i];
@@ -126,6 +124,7 @@ void Matrix::DisplaySnake()
       lc->setLed(0,TmpSnake[i-1].x ,TmpSnake[i-1].y, true);
     }
 	}
+  lc->setLed(0,TmpSnake[SnakeSize-1].x ,TmpSnake[SnakeSize-1].y, false);
 
 
   Serial.println("...");
