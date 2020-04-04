@@ -2,18 +2,18 @@
 #define DEBUG 0
 #include <LedControl.h>
 #include <Matrix.cpp>
+#include <Joystick.cpp>
 
 int DIN = A12;
 int CS =  A11;
 int CLK = A10;
 
-#define joyX A0
-#define joyY A1
 LedControl lc=LedControl(DIN,CLK,CS,0);
 unsigned int delaytime = 100;
 int randomRow = 0;
 int randomCol = 0;
 
+Joystick joystick;
 Matrix coordinates;
   
 void setup() {
@@ -50,9 +50,10 @@ void display() {
   }
 }
 
-void logMatrix() {  
-  int xValue = analogRead(A2);
-  int yValue = analogRead(A3);
+void logMatrix() {
+  joystick.ReadAnalog();
+  int xValue = joystick.x;
+  int yValue = joystick.y;
 
 
   if (yValue == 0 and randomRow > 0) {

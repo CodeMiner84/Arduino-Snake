@@ -27,9 +27,9 @@ int Matrix::GetY()
 
 void Matrix::Print()
 {
-  Serial.print("Matrix coordinates: [");
-  Serial.print(x);
-  Serial.print("][");
-  Serial.print(y);
-  Serial.println("]");
+  // Serial.print("Matrix coordinates: [");
+  // Serial.print(x);
+  // Serial.print("][");
+  // Serial.print(y);
+  // Serial.println("]");
 }
