@@ -15,6 +15,7 @@ Matrix::Matrix(Joystick* joystick, LedControl* lc)
   Snake[1] = Point { 3, 3 };
   Snake[2] = Point { 4, 3 };
   SnakeSize = 3;
+  GenerateFood();
 
   this->joystick = joystick;
 
@@ -31,8 +32,34 @@ Matrix::Matrix(Joystick* joystick, LedControl* lc)
   Serial.println("");
 }
 
+
 Matrix::~Matrix()
 {
+}
+
+
+void Matrix::GenerateFood()
+{
+  bool created = false;
+  do {
+    int foodX = random(0, 8);
+    int foodY = random(0, 8);
+
+    int sameCoords = false;
+    for (int i=0; i<SnakeSize; i++) {
+      if (foodX == Snake[i].x and foodY == Snake[i].y) {
+        sameCoords = sameCoords;
+      }
+    }
+
+    if (!sameCoords) {
+      created = false;
+      Food = Point { foodX, foodY };
+    }
+
+    Serial.print("ssss");
+
+  } while (created);
 }
 
 void Matrix::ChangeCoordinates(int x, int y)
@@ -96,6 +123,7 @@ void Matrix::PlaceSnake()
 	{
     lc->setLed(0,Snake[i].x ,Snake[i].y, true);
 	}
+  lc->setLed(0,Food.x ,Food.y, true);
 }
 
 void Matrix::DisplaySnake()
@@ -126,6 +154,14 @@ void Matrix::DisplaySnake()
 	}
   lc->setLed(0,TmpSnake[SnakeSize-1].x ,TmpSnake[SnakeSize-1].y, false);
 
+  lc->setLed(0,Food.x ,Food.y, true);
+
+
+
+Serial.print('Food ');
+Serial.print(Food.x);
+Serial.print(" - ");
+Serial.println(Food.y);
 
   Serial.println("...");
 }

@@ -19,6 +19,7 @@ class Matrix
 		int SnakeSize;
 		Point Snake[10];
 		Point TmpSnake[10];
+		Point Food;
 
 
 	public:
@@ -33,6 +34,7 @@ class Matrix
 		void MoveSnake();
 		void DisplaySnake();
 		void PlaceSnake();
+		void GenerateFood();
 };
 
 #endif
