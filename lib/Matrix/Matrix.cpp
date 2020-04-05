@@ -149,6 +149,10 @@ void Matrix::AddNewBodySegment()
     Snake[SnakeSegments] = Point { TmpSnake[SnakeSegments-2].x, TmpSnake[SnakeSegments-2].y };
     GenerateFood();
   }
+
+  if (SnakeSegments == MAX_SEGMENTS) {
+    YouWinScreen();
+  }
 }
 
 bool Matrix::hasEatOwnBody()
@@ -169,14 +173,20 @@ void Matrix::YouLooseScreen()
   lc->clearDisplay(0);
   byte IMAGES[8] =
   {
-    B00000000,
-    B01100110,
-    B01100110,
-    B00000000,
-    B00000000,
-    B00111100,
-    B01000010,
-    B00000000
+    B00000000, B01100110, B01100110, B00000000, B00000000, B00111100, B01000010, B00000000
+  };
+
+  DisplayImage(IMAGES);
+
+  delay(10000000);
+}
+
+void Matrix::YouWinScreen()
+{
+  lc->clearDisplay(0);
+  byte IMAGES[8] =
+  {
+    B00000000,B01100110,B01100110,B00000000,B00000000,B01000010,B00111100,B00000000
   };
 
   DisplayImage(IMAGES);
