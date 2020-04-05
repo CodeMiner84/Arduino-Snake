@@ -39,6 +39,7 @@ class Matrix
 		void YouLooseScreen();
 		void DisplayImage(const byte* image);
 		void AddNewBodySegment();
+		void BlinkDiode(Point point, bool active = true);
 };
 
 #endif

@@ -36,7 +36,7 @@ void Matrix::GenerateFood()
     int sameCoords = false;
     for (int i = 0; i < SnakeSegments; i++) {
       if (foodX == Snake[i].x and foodY == Snake[i].y) {
-        sameCoords = sameCoords;
+        sameCoords = true;
       }
     }
 
@@ -107,9 +107,10 @@ void Matrix::PlaceSnake()
 {
   for (int i = 0; i < SnakeSegments; i++)
 	{
-    lc->setLed(0,Snake[i].x ,Snake[i].y, true);
+    BlinkDiode(Snake[i]);
 	}
-  lc->setLed(0,Food.x ,Food.y, true);
+
+  BlinkDiode(Food);
 }
 
 void Matrix::DisplaySnake()
@@ -126,13 +127,19 @@ void Matrix::DisplaySnake()
       Snake[i] = Point { x, y };
     } else {
       Snake[i] = Point { TmpSnake[i-1].x, TmpSnake[i-1].y };
-      lc->setLed(0, TmpSnake[i-1].x, TmpSnake[i-1].y, true);
+      BlinkDiode(TmpSnake[i-1]);
     }
 	}
-  lc->setLed(0, TmpSnake[SnakeSegments-1].x , TmpSnake[SnakeSegments-1].y, false);
-  lc->setLed(0, Food.x, Food.y, true);
+
+  BlinkDiode(TmpSnake[SnakeSegments-1], false);
+  BlinkDiode(Food);
 
   AddNewBodySegment();
+}
+
+void Matrix::BlinkDiode(Point point, bool active = true)
+{
+  lc->setLed(0, point.x, point.y, active);
 }
 
 void Matrix::AddNewBodySegment()
