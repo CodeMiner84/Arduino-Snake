@@ -11,7 +11,7 @@ int CS =  A11;
 int CLK = A10;
 
 LedControl lc=LedControl(DIN,CLK,CS,0);
-unsigned int delaytime = 100;
+unsigned int delaytime = 50;
 int randomRow = 0;
 int randomCol = 0;
 

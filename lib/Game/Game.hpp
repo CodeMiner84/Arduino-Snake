@@ -14,10 +14,13 @@ class Game
 		~Game();
 		void Initialize(LedControl* lc);
 		void Display();
+		bool gameOver = false;
 		bool gameStarted = false;
 		void StartGameOnFirstMove();
 		void StartGame();
 		bool IsStarted();
+		bool IsGameOver();
+		void GameOver();
 
 };
 

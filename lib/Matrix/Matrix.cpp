@@ -58,12 +58,10 @@ void Matrix::GenerateFood()
       Food = Point { foodX, foodY };
     }
 
-    Serial.print("ssss");
-
   } while (created);
 }
 
-void Matrix::ChangeCoordinates(int x, int y)
+void Matrix::ChangeHeadCoordinates(int x, int y)
 {
   this->x = x;
   this->y = y;
@@ -73,11 +71,11 @@ void Matrix::MoveSnake()
 {
   joystick->ReadAnalog();
 
-  if (currentDirection != directions::up and joystick->IsDown()) {
-    currentDirection=directions::down;
-  }
   if (currentDirection != directions::down and joystick->IsUp()) {
     currentDirection=directions::up;
+  }
+  if (currentDirection != directions::up and joystick->IsDown()) {
+    currentDirection=directions::down;
   }
   if (currentDirection != directions::right and joystick->IsLeft()) {
     currentDirection=directions::left;
@@ -112,10 +110,9 @@ void Matrix::MoveSnake()
     y = MIN;
   }
 
-  ChangeCoordinates(x, y);
+  ChangeHeadCoordinates(x, y);
 
-  // Serial.print("Direction of game: ");
-  // Serial.println(currentDirection);
+  DisplaySnake();
 }
 
 void Matrix::PlaceSnake()
@@ -129,19 +126,11 @@ void Matrix::PlaceSnake()
 
 void Matrix::DisplaySnake()
 {
-	for(int i=0; i<SnakeSize; i++)
+	for(int i=0; i< SnakeSize; i++)
 	{
     TmpSnake[i] = Snake[i];
 	}
 
-	// for(int i=0;i<SnakeSize;i++)
-	// {
-  //   Serial.print("[");
-  //   Serial.print(TmpSnake[i].x);
-  //   Serial.print("][");
-  //   Serial.print(TmpSnake[i].y);
-  //   Serial.print("]   ");
-	// }
   for(int i=0; i<SnakeSize; i++)
 	{
     if ( i==0 ) {
@@ -155,12 +144,52 @@ void Matrix::DisplaySnake()
 	}
   lc->setLed(0,TmpSnake[SnakeSize-1].x ,TmpSnake[SnakeSize-1].y, false);
 
-
   lc->setLed(0,Food.x ,Food.y, true);
 
   if (Food.x == x and Food.y == y) {
     SnakeSize += 1;
     Snake[SnakeSize] = Point {TmpSnake[SnakeSize-2].x, TmpSnake[SnakeSize-2].y };
     GenerateFood();
+  }
+}
+
+bool Matrix::hasEatOwnBody()
+{
+  for(int i=1; i<SnakeSize; i++)
+	{
+    if (Snake[0].x == Snake[i].x and Snake[0].y == Snake[i].y) {
+      Serial.print("YOU EAT OWN BODY");
+      return true;
+    }
+	}
+
+  return false;
+}
+
+void Matrix::YouLooseScreen()
+{
+  lc->clearDisplay(0);
+  byte IMAGES[8] =
+  {
+    B00000000,
+    B01100110,
+    B01100110,
+    B00000000,
+    B00000000,
+    B00111100,
+    B01000010,
+    B00000000
+  };
+
+  DisplayImage(IMAGES);
+
+  delay(10000000);
+}
+
+void Matrix::DisplayImage(const byte* image) {
+  for (int i = 0; i < 8; i++) {
+    for (int j = 0; j < 8; j++) {
+      lc->setLed(0, i, j, bitRead(image[i], 7 - j));
+    }
   }
 }

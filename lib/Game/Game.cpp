@@ -6,7 +6,6 @@
 Game::Game() {}
 Game::~Game() {}
 
-
 void Game::Initialize(LedControl* lc)
 {
   joystick = new Joystick();
@@ -14,18 +13,26 @@ void Game::Initialize(LedControl* lc)
   Serial.println("GAME IS INITIALIZING");
 }
 
+void Game::Display()
+{
+  if (IsGameOver()) {
+    return ;
+  }
 
-void Game::Display() {
   if (IsStarted()) {
     matrix->MoveSnake();
-    matrix->DisplaySnake();
+    if (matrix->hasEatOwnBody()) {
+      GameOver();
+      matrix->YouLooseScreen();
+    }
   } else {
     StartGameOnFirstMove();
     matrix->PlaceSnake();
   }
 }
 
-void Game::StartGameOnFirstMove() {
+void Game::StartGameOnFirstMove()
+{
   if (joystick->WaitForFirstAction())
   {
     StartGame();
@@ -40,4 +47,14 @@ void Game::StartGame()
 bool Game::IsStarted()
 {
   return gameStarted;
+}
+
+bool Game::IsGameOver()
+{
+  return gameOver;
+}
+
+void Game::GameOver()
+{
+  gameOver = true;
 }

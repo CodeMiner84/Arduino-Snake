@@ -28,13 +28,16 @@ class Matrix
 		Matrix(Joystick* joystick, LedControl* lc);
 		~Matrix();
 
-		void ChangeCoordinates(int x, int y);
+		void ChangeHeadCoordinates(int x, int y);
 		void Print();
 		void AssignJoystick(Joystick* joystick);
 		void MoveSnake();
 		void DisplaySnake();
 		void PlaceSnake();
 		void GenerateFood();
+		bool hasEatOwnBody();
+		void YouLooseScreen();
+		void DisplayImage(const byte* image);
 };
 
 #endif
