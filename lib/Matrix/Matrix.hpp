@@ -14,13 +14,13 @@ class Matrix
 		Joystick* joystick;
 		static const int MIN = 0;
 		static const int MAX = 7;
+		static const int MAX_SEGMENTS = 15;
 		int currentDirection;
 		enum directions { up, down, left, right };
-		int SnakeSize;
-		Point Snake[10];
-		Point TmpSnake[10];
+		int SnakeSegments;
+		Point Snake[MAX_SEGMENTS];
+		Point TmpSnake[MAX_SEGMENTS];
 		Point Food;
-
 
 	public:
 		static const int SIZE = 8;
@@ -38,6 +38,7 @@ class Matrix
 		bool hasEatOwnBody();
 		void YouLooseScreen();
 		void DisplayImage(const byte* image);
+		void AddNewBodySegment();
 };
 
 #endif
