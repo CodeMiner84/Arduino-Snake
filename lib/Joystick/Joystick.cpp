@@ -4,8 +4,8 @@
 
 #define xAxis A2
 #define yAxis A3
-int JOYSTICK_MIN_VALUE = 0;
-int JOYSTICK_MAX_VALUE = 1023;
+int JOYSTICK_MIN_VALUE = 100;
+int JOYSTICK_MAX_VALUE = 900;
 
 Joystick::Joystick() {}
 
@@ -30,22 +30,22 @@ void Joystick::Debug()
 
 bool Joystick::IsUp()
 {
-  return y == JOYSTICK_MAX_VALUE;
+  return y >= JOYSTICK_MAX_VALUE;
 }
 
 bool Joystick::IsDown()
 {
-  return y == JOYSTICK_MIN_VALUE;
+  return y <= JOYSTICK_MIN_VALUE;
 }
 
 bool Joystick::IsLeft()
 {
-  return x == JOYSTICK_MIN_VALUE;
+  return x <= JOYSTICK_MIN_VALUE;
 }
 
 bool Joystick::IsRight()
 {
-  return x == JOYSTICK_MAX_VALUE;
+  return x >= JOYSTICK_MAX_VALUE;
 }
 
 bool Joystick::WaitForFirstAction()
@@ -54,10 +54,10 @@ bool Joystick::WaitForFirstAction()
   int startingY = analogRead(yAxis);
 
   if (
-    startingX == JOYSTICK_MIN_VALUE or
-    startingX == JOYSTICK_MAX_VALUE or
-    startingY == JOYSTICK_MIN_VALUE or
-    startingY == JOYSTICK_MAX_VALUE
+    startingX <= JOYSTICK_MIN_VALUE or
+    startingX >= JOYSTICK_MAX_VALUE or
+    startingY <= JOYSTICK_MIN_VALUE or
+    startingY >= JOYSTICK_MAX_VALUE
   ) {
     return true;
   }
