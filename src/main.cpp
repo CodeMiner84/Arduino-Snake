@@ -11,7 +11,7 @@ int CS =  A11;
 int CLK = A10;
 
 LedControl lc=LedControl(DIN,CLK,CS,0);
-unsigned int delaytime = 50;
+unsigned int delaytime = 100;
 int randomRow = 0;
 int randomCol = 0;
 
@@ -24,7 +24,7 @@ void setup() {
   #endif
 
   lc.shutdown(0,false);       
-  lc.setIntensity(0,0);//Adjust the brightness maximum is 15
+  lc.setIntensity(0, 15);//Adjust the brightness maximum is 15
   lc.clearDisplay(0);
 
   game.Initialize(&lc);
