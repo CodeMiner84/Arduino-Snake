@@ -11,25 +11,13 @@ Matrix::Matrix(Joystick* joystick, LedControl* lc)
   randomSeed(analogRead(0));
 
   x = 2, y = 3;
-  Snake[0] = Point { 2, 3 };
+  Snake[0] = Point { x, y };
   Snake[1] = Point { 3, 3 };
   Snake[2] = Point { 4, 3 };
   SnakeSize = 3;
   GenerateFood();
 
   this->joystick = joystick;
-
-  Serial.print("SNAKE COORDS: ");
-	for(int i=0;i<SnakeSize;i++)
-	{
-    Serial.print("[");
-    Serial.print(Snake[i].x);
-    Serial.print("][");
-    Serial.print(Snake[i].y);
-    Serial.print("]");
-	}
-
-  Serial.println("");
 }
 
 
@@ -46,7 +34,7 @@ void Matrix::GenerateFood()
     int foodY = random(0, 8);
 
     int sameCoords = false;
-    for (int i=0; i<SnakeSize; i++) {
+    for (int i = 0; i < SnakeSize; i++) {
       if (foodX == Snake[i].x and foodY == Snake[i].y) {
         sameCoords = sameCoords;
       }
@@ -117,7 +105,7 @@ void Matrix::MoveSnake()
 
 void Matrix::PlaceSnake()
 {
-  for(int i=0;i<SnakeSize;i++)
+  for (int i = 0; i < SnakeSize; i++)
 	{
     lc->setLed(0,Snake[i].x ,Snake[i].y, true);
 	}
@@ -126,25 +114,24 @@ void Matrix::PlaceSnake()
 
 void Matrix::DisplaySnake()
 {
-	for(int i=0; i< SnakeSize; i++)
+	for (int i = 0; i < SnakeSize; i++)
 	{
     TmpSnake[i] = Snake[i];
 	}
 
-  for(int i=0; i<SnakeSize; i++)
+  for (int i = 0; i < SnakeSize; i++)
 	{
     if ( i==0 ) {
-      lc->setLed(0,x ,y, true);
-
+      lc->setLed(0,x ,y, true); 
       Snake[i] = Point { x, y };
     } else {
       Snake[i] = Point { TmpSnake[i-1].x, TmpSnake[i-1].y };
-      lc->setLed(0,TmpSnake[i-1].x ,TmpSnake[i-1].y, true);
+      lc->setLed(0, TmpSnake[i-1].x, TmpSnake[i-1].y, true);
     }
 	}
-  lc->setLed(0,TmpSnake[SnakeSize-1].x ,TmpSnake[SnakeSize-1].y, false);
+  lc->setLed(0, TmpSnake[SnakeSize-1].x , TmpSnake[SnakeSize-1].y, false);
 
-  lc->setLed(0,Food.x ,Food.y, true);
+  lc->setLed(0, Food.x, Food.y, true);
 
   if (Food.x == x and Food.y == y) {
     SnakeSize += 1;
@@ -155,7 +142,7 @@ void Matrix::DisplaySnake()
 
 bool Matrix::hasEatOwnBody()
 {
-  for(int i=1; i<SnakeSize; i++)
+  for (int i = 1; i < SnakeSize; i++)
 	{
     if (Snake[0].x == Snake[i].x and Snake[0].y == Snake[i].y) {
       Serial.print("YOU EAT OWN BODY");
