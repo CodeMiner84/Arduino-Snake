@@ -8,14 +8,14 @@ class Game
 	private:
 		Matrix* matrix;
 		Joystick* joystick;
-	public:
+		bool gameOver = false;
+		bool gameStarted = false;
 
+	public:
 		Game();
 		~Game();
 		void Initialize(LedControl* lc);
 		void Display();
-		bool gameOver = false;
-		bool gameStarted = false;
 		void StartGameOnFirstMove();
 		void StartGame();
 		bool IsStarted();
