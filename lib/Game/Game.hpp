@@ -13,8 +13,8 @@ class Game
 
 	public:
 		Game();
+		Game(LedControl* lc);
 		~Game();
-		void Initialize(LedControl* lc);
 		void Display();
 		void StartGameOnFirstMove();
 		void StartGame();

@@ -4,14 +4,13 @@
 #include <LedControl.h>
 
 Game::Game() {}
-Game::~Game() {}
-
-void Game::Initialize(LedControl* lc)
+Game::Game(LedControl* lc)
 {
   joystick = new Joystick();
   matrix = new Matrix(joystick, lc);
   Serial.println("GAME IS INITIALIZING");
 }
+Game::~Game() {}
 
 void Game::Display()
 {

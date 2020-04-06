@@ -1,4 +1,3 @@
-#pragma once
 #include <Arduino.h>
 #include <LedControl.h>
 #include <Game.cpp>
@@ -18,9 +17,8 @@ void setup() {
   lc.setIntensity(0, 15);
   lc.clearDisplay(0);
 
-  game.Initialize(&lc);
+  game = Game(&lc);
 }
-
 
 void loop() {
   game.Display();
