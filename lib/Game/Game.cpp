@@ -26,8 +26,8 @@ void Game::Display()
       matrix->YouLooseScreen();
     }
   } else {
-    StartGameOnFirstMove();
     matrix->PlaceSnake();
+    StartGameOnFirstMove();
   }
 }
 

@@ -1,9 +1,6 @@
 #pragma once
 #include <Arduino.h>
-#define DEBUG 0
 #include <LedControl.h>
-#include <Matrix.cpp>
-#include <Joystick.cpp>
 #include <Game.cpp>
 
 int DIN = A12;
@@ -12,19 +9,13 @@ int CLK = A10;
 
 LedControl lc=LedControl(DIN,CLK,CS,0);
 unsigned int delaytime = 100;
-int randomRow = 0;
-int randomCol = 0;
-
 Game game;
-Joystick joystick;
 
 void setup() {
-  #ifdef DEBUG
   Serial.begin(9600);
-  #endif
 
   lc.shutdown(0,false);       
-  lc.setIntensity(0, 15);//Adjust the brightness maximum is 15
+  lc.setIntensity(0, 15);
   lc.clearDisplay(0);
 
   game.Initialize(&lc);

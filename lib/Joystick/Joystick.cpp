@@ -2,8 +2,8 @@
 #include <Arduino.h>
 #include "Joystick.hpp"  
 
-#define xAxis A2
-#define yAxis A3
+#define xAxis A3
+#define yAxis A1
 int JOYSTICK_MIN_VALUE = 100;
 int JOYSTICK_MAX_VALUE = 900;
 

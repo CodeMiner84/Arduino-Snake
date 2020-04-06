@@ -6,10 +6,10 @@
 class Game  
 {
 	private:
-		Matrix* matrix;
-		Joystick* joystick;
 		bool gameOver = false;
 		bool gameStarted = false;
+		Matrix* matrix;
+		Joystick* joystick;
 
 	public:
 		Game();
@@ -18,9 +18,9 @@ class Game
 		void Display();
 		void StartGameOnFirstMove();
 		void StartGame();
+		void GameOver();
 		bool IsStarted();
 		bool IsGameOver();
-		void GameOver();
 
 };
 

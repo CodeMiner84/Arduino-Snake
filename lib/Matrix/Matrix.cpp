@@ -20,11 +20,7 @@ Matrix::Matrix(Joystick* joystick, LedControl* lc)
   this->joystick = joystick;
 }
 
-
-Matrix::~Matrix()
-{
-}
-
+Matrix::~Matrix() {}
 
 void Matrix::GenerateFood()
 {
@@ -41,12 +37,12 @@ void Matrix::GenerateFood()
     }
 
     if (!sameCoords) {
-      created = false;
+      created = true;
 
       Food = Point { foodX, foodY };
     }
 
-  } while (created);
+  } while (!created);
 }
 
 void Matrix::ChangeHeadCoordinates(int x, int y)
@@ -58,43 +54,38 @@ void Matrix::ChangeHeadCoordinates(int x, int y)
 void Matrix::MoveSnake()
 {
   joystick->ReadAnalog();
-
+Serial.print(".");
   if (currentDirection != directions::down and joystick->IsUp()) {
     currentDirection=directions::up;
-  }
-  if (currentDirection != directions::up and joystick->IsDown()) {
+    Serial.println("up");
+  } else if (currentDirection != directions::up and joystick->IsDown()) {
     currentDirection=directions::down;
-  }
-  if (currentDirection != directions::right and joystick->IsLeft()) {
+    Serial.println("down");
+  } else if (currentDirection != directions::right and joystick->IsLeft()) {
     currentDirection=directions::left;
-  }
-  if (currentDirection != directions::left and joystick->IsRight()) {
+    Serial.println("left");
+  } else  if (currentDirection != directions::left and joystick->IsRight()) {
     currentDirection=directions::right;
+    Serial.println("right");
   }
 
   if (currentDirection==directions::down) {
     x -= 1;
-  }
-  if (currentDirection==directions::up) {
+  } else if (currentDirection==directions::up) {
     x += 1;
-  }
-  if (currentDirection==directions::left) {
+  } else  if (currentDirection==directions::left) {
     y -= 1;
-  }
-  if (currentDirection==directions::right) {
+  } else if (currentDirection==directions::right) {
     y += 1;
   }
 
   if (x < MIN) {
     x = MAX;
-  }
-  if (x > MAX) {
+  } else  if (x > MAX) {
     x = MIN;
-  }
-  if (y < MIN) {
+  } else  if (y < MIN) {
     y = MAX;
-  }
-  if (y > MAX) {
+  } else if (y > MAX) {
     y = MIN;
   }
 
@@ -146,7 +137,7 @@ void Matrix::AddNewBodySegment()
 {
   if (Food.x == x and Food.y == y) {
     SnakeSegments += 1;
-    Snake[SnakeSegments] = Point { TmpSnake[SnakeSegments-2].x, TmpSnake[SnakeSegments-2].y };
+    Snake[SnakeSegments] = Point { TmpSnake[SnakeSegments-1].x, TmpSnake[SnakeSegments-1].y };
     GenerateFood();
   }
 
@@ -161,6 +152,7 @@ bool Matrix::hasEatOwnBody()
 	{
     if (Snake[0].x == Snake[i].x and Snake[0].y == Snake[i].y) {
       Serial.print("YOU EAT OWN BODY");
+
       return true;
     }
 	}
