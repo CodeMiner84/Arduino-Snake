@@ -54,19 +54,15 @@ void Matrix::ChangeHeadCoordinates(int x, int y)
 void Matrix::MoveSnake()
 {
   joystick->ReadAnalog();
-Serial.print(".");
+
   if (currentDirection != directions::down and joystick->IsUp()) {
     currentDirection=directions::up;
-    Serial.println("up");
   } else if (currentDirection != directions::up and joystick->IsDown()) {
     currentDirection=directions::down;
-    Serial.println("down");
   } else if (currentDirection != directions::right and joystick->IsLeft()) {
     currentDirection=directions::left;
-    Serial.println("left");
   } else  if (currentDirection != directions::left and joystick->IsRight()) {
     currentDirection=directions::right;
-    Serial.println("right");
   }
 
   if (currentDirection==directions::down) {
@@ -106,14 +102,12 @@ void Matrix::PlaceSnake()
 
 void Matrix::DisplaySnake()
 {
-	for (int i = 0; i < SnakeSegments; i++)
-	{
+	for (int i = 0; i < SnakeSegments; i++) {
     TmpSnake[i] = Snake[i];
 	}
 
-  for (int i = 0; i < SnakeSegments; i++)
-	{
-    if ( i==0 ) {
+  for (int i = 0; i < SnakeSegments; i++) {
+    if ( i == 0 ) {
       lc->setLed(0,x ,y, true); 
       Snake[i] = Point { x, y };
     } else {
@@ -148,8 +142,7 @@ void Matrix::AddNewBodySegment()
 
 bool Matrix::hasEatOwnBody()
 {
-  for (int i = 1; i < SnakeSegments; i++)
-	{
+  for (int i = 1; i < SnakeSegments; i++) {
     if (Snake[0].x == Snake[i].x and Snake[0].y == Snake[i].y) {
       Serial.print("YOU EAT OWN BODY");
 

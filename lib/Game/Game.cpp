@@ -32,8 +32,7 @@ void Game::Display()
 
 void Game::StartGameOnFirstMove()
 {
-  if (joystick->WaitForFirstAction())
-  {
+  if (joystick->WaitForFirstAction()) {
     StartGame();
   }
 }
